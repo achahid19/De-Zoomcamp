@@ -1,0 +1,12 @@
+services:
+  sql_service:
+    image: postgres:16
+    container_name: sql_container
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=ny_taxi
+    volumes:
+      - ./ny_taxi_postgres_data:/var/lib/postgresql/data
