@@ -16,6 +16,9 @@ log_db:
 debug_pipeline:
 	docker run -it --rm --entrypoint bash etl_image:latest
 
+connect_db:
+	uv run pgcli -h localhost -p ${DB_PORT} -U ${DB_USER} -d ${DB_NAME}
+
 ps:
 	docker compose ps
 
@@ -24,3 +27,4 @@ clean:
 
 clear:
 	docker system prune -a -f --volumes
+
