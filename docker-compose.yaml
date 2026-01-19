@@ -3,13 +3,15 @@ services:
     image: postgres:16
     container_name: sql_container
     ports:
-      - "5432:5432"
+      - "${DB_PORT}:${DB_PORT}"
     environment:
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=root
-      - POSTGRES_DB=ny_taxi
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
     volumes:
       - ./ny_taxi_postgres_data:/var/lib/postgresql/data
+    env_file:
+      - .env
   pipelines:
     image: etl_image:latest
     container_name: pipelines_container
