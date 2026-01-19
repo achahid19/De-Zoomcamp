@@ -6,10 +6,11 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "pandas>=2.3.3",
+    "psycopg-binary>=3.3.2",
     "pyarrow>=22.0.0",
 ]
 
 [dependency-groups]
 dev = [
-    "pgcli>=4.4.0",
+    "pgcli>=4.2.0",
 ]
