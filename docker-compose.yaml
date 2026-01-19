@@ -10,3 +10,9 @@ services:
       - POSTGRES_DB=ny_taxi
     volumes:
       - ./ny_taxi_postgres_data:/var/lib/postgresql/data
+  pipelines:
+    image: etl_image:latest
+    container_name: pipelines_container
+    build:
+      context: ./
+      dockerfile: pipelines/image/dockerfile
