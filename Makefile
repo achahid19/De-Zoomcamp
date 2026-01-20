@@ -19,6 +19,9 @@ debug_pipeline:
 connect_db:
 	uv run pgcli -h localhost -p ${DB_PORT} -U ${DB_USER} -d ${DB_NAME}
 
+ingest_data:
+	uv run python ingest_data.py
+
 ps:
 	docker compose ps
 
