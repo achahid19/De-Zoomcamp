@@ -14,12 +14,18 @@ services:
       - .env
     networks:
       - pg-network
-  pipelines:
+  pipelines_service:
     image: etl_image:latest
     container_name: pipelines_container
     build:
       context: ./
       dockerfile: pipelines/image/dockerfile
+    env_file:
+      - .env
+    networks:
+      - pg-network
+    depends_on:
+      - sql_service
   pgadmin_service:
     image: dpage/pgadmin4:latest
     container_name: pgadmin_container

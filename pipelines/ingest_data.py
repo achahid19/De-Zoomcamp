@@ -19,7 +19,7 @@ import os
 @click.command()
 @click.option('--user', default=f'{os.getenv("DB_USER")}', help='PostgreSQL user')
 @click.option('--password', default=f'{os.getenv("DB_PASSWORD")}', help='PostgreSQL password')
-@click.option('--host', default='localhost', help='PostgreSQL host')
+@click.option('--host', default=f'{os.getenv("DB_HOST")}', help='PostgreSQL host')
 @click.option('--port', default=int(os.getenv("DB_PORT")), type=int, help='PostgreSQL port')
 @click.option('--db', default=f'{os.getenv("DB_NAME")}', help='PostgreSQL database name')
 @click.option('--table', default='yellow_taxi_data', help='Target table name')
@@ -28,7 +28,7 @@ def ingest_data(user, password, host, port, db, table):
         # Ingestion logic here
         # import db vars from environment variables
 
-    # DEBUG: print(f'Ingesting data into {user}:{password}@{host}:{port}/{db}, table: {table}')
+    print(f'Ingesting data into {user}:{password}@{host}:{port}/{db}, table: {table}')
     engine = create_engine(f'postgresql://{user}:{password}@{host}:{port}/{db}')
 
     # Read a sample of the data

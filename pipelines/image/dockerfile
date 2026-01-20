@@ -12,7 +12,11 @@ COPY "pyproject.toml" "uv.lock" ".python-version" ./
 # Install dependencies from lock file (ensures reproducible builds)
 RUN uv sync --locked
 
-# Copy application code
-COPY ./pipelines/first_pipeline.py first_pipeline.py
+# load .env into os env
+# This is required for the application to read the DB connection parameters
+ENV LOAD_DOTENV=true
 
-ENTRYPOINT ["python", "first_pipeline.py", "10"]
+# Copy application code
+COPY ./pipelines/ingest_data.py ingest_data.py
+
+ENTRYPOINT ["python", "ingest_data.py"]
