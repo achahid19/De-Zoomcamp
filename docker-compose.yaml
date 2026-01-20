@@ -12,9 +12,29 @@ services:
       - ./ny_taxi_postgres_data:/var/lib/postgresql/data
     env_file:
       - .env
+    networks:
+      - pg-network
   pipelines:
     image: etl_image:latest
     container_name: pipelines_container
     build:
       context: ./
       dockerfile: pipelines/image/dockerfile
+  pgadmin_service:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin_container
+    ports:
+      - 8085:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+    volumes:
+      - ./pgadmin_data:/var/lib/pgadmin
+    env_file:
+      - .env
+    networks:
+      - pg-network
+
+networks:
+  pg-network:
+    driver: bridge
