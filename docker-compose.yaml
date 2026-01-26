@@ -3,7 +3,7 @@ services:
     image: postgres:16
     container_name: sql_container
     ports:
-      - "${DB_PORT}:${DB_PORT}"
+      - "5436:${DB_PORT}"
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}

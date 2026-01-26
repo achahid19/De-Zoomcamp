@@ -17,6 +17,6 @@ RUN uv sync --locked
 ENV LOAD_DOTENV=true
 
 # Copy application code
-COPY ./pipelines/ingest_data.py ingest_data.py
+COPY ./pipelines/ingest_data_hw1.py ingest_data_hw1.py
 
-ENTRYPOINT ["python", "ingest_data.py"]
+ENTRYPOINT ["python", "ingest_data_hw1.py"]

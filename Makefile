@@ -8,7 +8,7 @@ logs:
 	docker compose logs -f
 
 log_pipeline:
-	docker compose logs -f pipelines
+	docker compose logs -f pipelines_service
 
 log_db:
 	docker compose logs -f sql_service
@@ -20,7 +20,7 @@ connect_db:
 	uv run pgcli -h localhost -p ${DB_PORT} -U ${DB_USER} -d ${DB_NAME}
 
 ingest_data:
-	uv run python ingest_data.py
+	uv run python ingest_data_hw1.py
 
 ps:
 	docker compose ps
